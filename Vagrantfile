@@ -69,8 +69,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y apache2
-    sed -i "s/var\/www\/html/home\/vagrant/" /etc/apache2/sites-enabled/000-default.conf
-    sed -i "s/var\/www/home\/vagrant/" /etc/apache2/apache2.conf
+    sed -e "s/var\/www\/html/home\/vagrant/" /etc/apache2/sites-enabled/000-default.conf
+    sed -e "s/var\/www/home\/vagrant/" /etc/apache2/apache2.conf
     service apache2 restart
   SHELL
 end
