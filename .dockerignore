@@ -1,2 +1,5 @@
+.idea
+.git
+.vagrant
 Vagrantfile
 mongodb.tar
