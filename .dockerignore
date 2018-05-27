@@ -2,4 +2,4 @@
 .git
 .vagrant
 Vagrantfile
-mongodb.tar
+mongodb.tar.gz
