@@ -76,21 +76,21 @@ Vagrant.configure("2") do |config|
       mkdir -p "/var/www/images"
       mkdir -p "/var/www/ui"
   SHELL
-  if File.directory?(File.expand_path("../../PC-Asset/mongodb.tar.gz"))
+  if File.directory?(File.expand_path("../PC-Asset/mongodb.tar.gz"))
     config.vm.provision "mongodb", type: "file" do |f|
-      f.source = "../../PC-Asset/mongodb.tar.gz"
+      f.source = "../PC-Asset/mongodb.tar.gz"
       f.destination = "/var/www/images/mongodb.tar.gz"
     end
   end
-  if File.directory?(File.expand_path("../../PC-Server/pcserver.tar.gz"))
+  if File.directory?(File.expand_path("../PC-Server/pcserver.tar.gz"))
     config.vm.provision "pcserver", type: "file" do |f|
-      f.source = "../../PC-Server/pcserver.tar.gz"
+      f.source = "../PC-Server/pcserver.tar.gz"
       f.destination = "/var/www/images/pcserver.tar.gz"
     end
   end
-  if File.directory?(File.expand_path("../../PC-Service/pcservice.tar.gz"))
+  if File.directory?(File.expand_path("../PC-Service/pcservice.tar.gz"))
     config.vm.provision "pcservice", type: "file" do |f|
-      f.source = "../../PC-Service/pcservice.tar.gz"
+      f.source = "../PC-Service/pcservice.tar.gz"
       f.destination = "/var/www/images/pcservice.tar.gz"
     end
   end
