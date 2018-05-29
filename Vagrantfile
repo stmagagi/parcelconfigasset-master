@@ -82,13 +82,13 @@ Vagrant.configure("2") do |config|
       f.destination = "/var/www/images/mongodb.tar.gz"
     end
   end
-   if File.file("../PC-Server/pcserver.tar.gz")
+   if File.file?("../PC-Server/pcserver.tar.gz")
      config.vm.provision "pcserver", type: "file" do |f|
        f.source = "../PC-Server/pcserver.tar.gz"
        f.destination = "/var/www/images/pcserver.tar.gz"
      end
    end
-   if File.file("../PC-Service/pcservice.tar.gz")
+   if File.file?("../PC-Service/pcservice.tar.gz")
      config.vm.provision "pcservice", type: "file" do |f|
        f.source = "../PC-Service/pcservice.tar.gz"
        f.destination = "/var/www/images/pcservice.tar.gz"
