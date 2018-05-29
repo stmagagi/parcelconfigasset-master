@@ -67,10 +67,15 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -y apache2
-    sed -e "s/var\/www\/html/home\/vagrant/" /etc/apache2/sites-enabled/000-default.conf
-    sed -e "s/var\/www/home\/vagrant/" /etc/apache2/apache2.conf
-    service apache2 restart
+      apt-get update
+      apt-get install -y apache2
+      sed -i "s|var/www/html|var/www|" /etc/apache2/sites-enabled/000-default.conf
+      service apache2 restart
+      chown -R vagrant:www-data /var/www
+      mkdir -p "/var/www/images"
+      mkdir -p "/var/www/ui"
   SHELL
+  config.vm.provision "mongodb", source: "../../PC-Asset/mongodb.tar.gz", destination: "/var/www/images/mongodb.tar.gz"
+  config.vm.provision "pcserver", source: "../../PC-Server/pcserver.tar.gz", destination: "/var/www/images/pcserver.tar.gz"
+  config.vm.provision "pcservice", source: "../../PC-Service/pcservice.tar.gz", destination: "/var/www/images/pcservice.tar.gz"
 end
