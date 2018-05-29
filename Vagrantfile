@@ -67,15 +67,24 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-      apt-get update
-      apt-get install -y apache2
-      sed -i "s|var/www/html|var/www|" /etc/apache2/sites-enabled/000-default.conf
-      service apache2 restart
-      chown -R vagrant:www-data /var/www
-      mkdir -p "/var/www/images"
-      mkdir -p "/var/www/ui"
-  SHELL
-  config.vm.provision "mongodb", source: "../../PC-Asset/mongodb.tar.gz", destination: "/var/www/images/mongodb.tar.gz"
-  config.vm.provision "pcserver", source: "../../PC-Server/pcserver.tar.gz", destination: "/var/www/images/pcserver.tar.gz"
-  config.vm.provision "pcservice", source: "../../PC-Service/pcservice.tar.gz", destination: "/var/www/images/pcservice.tar.gz"
+        apt-get update
+        apt-get install -y apache2
+        sed -i "s|var/www/html|var/www|" /etc/apache2/sites-enabled/000-default.conf
+        service apache2 restart
+        chown -R vagrant:www-data /var/www
+        mkdir -p "/var/www/images"
+        mkdir -p "/var/www/ui"
+    SHELL
+    config.vm.provision "mongodb", type: "file" do |f|
+      f.source = "../../PC-Asset/mongodb.tar.gz"
+      f.destination = "/var/www/images/mongodb.tar.gz"
+    end
+    config.vm.provision "pcserver", type: "file" do |f|
+      f.source = "../../PC-Server/pcserver.tar.gz"
+      f.destination = "/var/www/images/pcserver.tar.gz"
+    end
+    config.vm.provision "pcservice", type: "file" do |f|
+      f.source = "../../PC-Service/pcservice.tar.gz"
+      f.destination = "/var/www/images/pcservice.tar.gz"
+    end
 end
