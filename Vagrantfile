@@ -59,6 +59,8 @@ Vagrant.configure("2") do |config|
     vb.memory = "512"
     vb.cpus = 1
     vb.name = "asset-server"
+ 	vb.customize [ "modifyvm", :id, "--uart1", "0x3F8", "4" ]
+ 	vb.customize [ "modifyvm", :id, "--uartmode1", "file", File.join(Dir.pwd, "%s-console.log" % vb.name) ]
   end
   #
   # View the documentation for the provider you are using for more
@@ -72,6 +74,7 @@ Vagrant.configure("2") do |config|
       apt-get install -y apache2
       sed -i "s|var/www/html|var/www/|" /etc/apache2/sites-enabled/000-default.conf
       service apache2 restart
+      chown -R vagrant:www-data /var/www
       mkdir -p "/var/www/images"
       mkdir -p "/var/www/ui"
       chown -R vagrant:www-data /var/www
