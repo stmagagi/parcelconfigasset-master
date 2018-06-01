@@ -72,28 +72,30 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y apache2
+      sed -i "s|APACHE_RUN_USER=www-data|APACHE_RUN_USER=vagrant|" /etc/apache2/envvars
+      sed -i "s|APACHE_RUN_GROUP=www-data|APACHE_RUN_GROUP=vagrant|" /etc/apache2/envvars
       sed -i "s|var/www/html|var/www/|" /etc/apache2/sites-enabled/000-default.conf
       service apache2 restart
-      chown -R vagrant:www-data /var/www
+#      chown -R vagrant:www-data /var/www
       mkdir -p "/var/www/images"
       mkdir -p "/var/www/ui"
-      chown -R vagrant:www-data /var/www
+#      chown -R vagrant:www-data /var/www
   SHELL
-  if File.file?("../PC-Asset/mongodb.tar.gz")
+  if File.file?("/Users/paul/.jenkins/workspace/PC-Asset/mongodb.tar.gz")
     config.vm.provision "mongodb", type: "file" do |f|
-      f.source = "../PC-Asset/mongodb.tar.gz"
+      f.source = "/Users/paul/.jenkins/workspace/PC-Asset/mongodb.tar.gz"
       f.destination = "/var/www/images/mongodb.tar.gz"
     end
   end
-   if File.file?("../PC-Server/pcserver.tar.gz")
+   if File.file?("/Users/paul/.jenkins/workspace/PC-Server/pcserver.tar.gz")
      config.vm.provision "pcserver", type: "file" do |f|
-       f.source = "../PC-Server/pcserver.tar.gz"
+       f.source = "/Users/paul/.jenkins/workspace/PC-Server/pcserver.tar.gz"
        f.destination = "/var/www/images/pcserver.tar.gz"
      end
    end
-   if File.file?("../PC-Service/pcservice.tar.gz")
+   if File.file?("/Users/paul/.jenkins/workspace/PC-Service/pcservice.tar.gz")
      config.vm.provision "pcservice", type: "file" do |f|
-       f.source = "../PC-Service/pcservice.tar.gz"
+       f.source = "/Users/paul/.jenkins/workspace/PC-Service/pcservice.tar.gz"
        f.destination = "/var/www/images/pcservice.tar.gz"
      end
    end
