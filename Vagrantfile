@@ -99,4 +99,16 @@ Vagrant.configure("2") do |config|
        f.destination = "/var/www/images/pcservice.tar.gz"
      end
    end
+   if File.file?("/Users/paul/.jenkins/workspace/PC-Service/html/parcelSize.html")
+     config.vm.provision "pcservice-html", type: "file" do |f|
+       f.source = "/Users/paul/.jenkins/workspace/PC-Service/html/parcelSize.html"
+       f.destination = "/var/www/ui/html/parcelSize.html"
+     end
+   end
+   if File.file?("/Users/paul/.jenkins/workspace/PC-Service/js/parcel-size.component.js")
+     config.vm.provision "pcservice-js", type: "file" do |f|
+       f.source = "/Users/paul/.jenkins/workspace/PC-Service/js/parcel-size.component.js"
+       f.destination = "/var/www/ui/js/parcel-size.component.js"
+     end
+   end
 end
