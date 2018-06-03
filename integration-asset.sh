@@ -15,5 +15,3 @@ docker stop mongodb
 echo "Docker container create ..."
 docker run -p 27017:27017 --name="mongodb" --network="pcnetwork" -d mongodb
 echo "Docker container running ..."
-docker container prune -f
-echo "Docker container pruned!"
