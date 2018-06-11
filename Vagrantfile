@@ -76,10 +76,10 @@ Vagrant.configure("2") do |config|
       sed -i "s|APACHE_RUN_GROUP=www-data|APACHE_RUN_GROUP=vagrant|" /etc/apache2/envvars
       sed -i "s|var/www/html|var/www/|" /etc/apache2/sites-enabled/000-default.conf
       service apache2 restart
-#      chown -R vagrant:www-data /var/www
+      chown -R vagrant:www-data /var/www
       mkdir -p "/var/www/images"
       mkdir -p "/var/www/ui"
-#      chown -R vagrant:www-data /var/www
+      chown -R vagrant:www-data /var/www
   SHELL
   if File.file?("/Users/gagiyev/.jenkins/workspace/cd-projekt/mongodb.tar.gz")
     config.vm.provision "mongodb", type: "file" do |f|
