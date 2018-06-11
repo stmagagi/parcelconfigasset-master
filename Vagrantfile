@@ -87,27 +87,27 @@ Vagrant.configure("2") do |config|
       f.destination = "/var/www/images/mongodb.tar.gz"
     end
   end
-   if File.file?("/Users/gagiyev/.jenkins/workspace/cd-projekt/pcserver.tar.gz")
+   if File.file?("/Users/gagiyev/.jenkins/workspace/web-server/pcserver.tar.gz")
      config.vm.provision "pcserver", type: "file" do |f|
-       f.source = "/Users/gagiyev/.jenkins/workspace/cd-projekt/pcserver.tar.gz"
+       f.source = "/Users/gagiyev/.jenkins/workspace/web-server/pcserver.tar.gz"
        f.destination = "/var/www/images/pcserver.tar.gz"
      end
    end
-   if File.file?("/Users/gagiyev/.jenkins/workspace/cd-projekt/pcservice.tar.gz")
+   if File.file?("/Users/gagiyev/.jenkins/workspace/web-service/pcservice.tar.gz")
      config.vm.provision "pcservice", type: "file" do |f|
-       f.source = "/Users/gagiyev/.jenkins/workspace/cd-projekt/pcservice.tar.gz"
+       f.source = "/Users/gagiyev/.jenkins/workspace/web-service/pcservice.tar.gz"
        f.destination = "/var/www/images/pcservice.tar.gz"
      end
    end
-   if File.file?("/Users/gagiyev/.jenkins/workspace/cd-projekt/html/parcelSize.html")
+   if File.file?("/Users/gagiyev/.jenkins/workspace/web-service/html/parcelSize.html")
      config.vm.provision "pcservice-html", type: "file" do |f|
-       f.source = "/Users/gagiyev/.jenkins/workspace/cd-projekt/html/parcelSize.html"
+       f.source = "/Users/gagiyev/.jenkins/workspace/web-service/html/parcelSize.html"
        f.destination = "/var/www/ui/html/parcelSize.html"
      end
    end
-   if File.file?("/Users/gagiyev/.jenkins/workspace/cd-projekt/js/parcel-size.component.js")
+   if File.file?("/Users/gagiyev/.jenkins/workspace/web-service/js/parcel-size.component.js")
      config.vm.provision "pcservice-js", type: "file" do |f|
-       f.source = "/Users/gagiyev/.jenkins/workspace/cd-projekt/js/parcel-size.component.js"
+       f.source = "/Users/gagiyev/.jenkins/workspace/web-service/js/parcel-size.component.js"
        f.destination = "/var/www/ui/js/parcel-size.component.js"
      end
    end
